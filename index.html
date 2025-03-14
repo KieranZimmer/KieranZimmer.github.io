@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://maps.googleapis.com;"> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' http:"> -->
+    <!-- <script id="polygons-script" src="polygons/hadza_polygons.js" defer></script> -->
+    <script src="maps_script.js" defer></script>
+    <title>Physiognomy Guessr</title>
+    <style>
+        body {
+            font-family: sans-serif; /* Optional:  Set a default font */
+        }
+
+        .container {
+            display: flex;  /* Use flexbox for the layout */
+            height: 100vh; /* Occupy the full viewport height */
+        }
+
+        .left-side {
+            width: 30%; /* Adjust as needed */
+            padding: 20px;
+            box-sizing: border-box; /* Include padding and border in the width */
+        }
+
+        #map {
+            height: 100%;
+            width: 70%; /* Adjust as needed */
+        }
+
+        img {
+            max-width: 100%; /* Make images responsive */
+            height: auto;
+            margin-bottom: 10px; /* Add spacing between images */
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQe_s_22AujKxB-yEmE6t9aEAAWQ9wPc0"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="left-side">
+        <h2>Click to Place Your Guess!</h2>
+        <h4 id="round">Round 1</h4>
+        <h4>Where does this ethnic group originate from?</h4>
+        <img id="facem" src="images/hadzam.jpg" alt="Hadza Person 1">
+        <img id="facef" src="images/hadzaf.jpg" alt="Hadza Person 2">
+        <!-- <p id="distance"></p>
+        <p id="score"></p>
+        <p id="average-score"></p> -->
+        <!-- <button id="next-face">Next Face</button> -->
+    </div>
+    <div id="map"></div>
+
+    <div id="modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
+    <!-- <div id="modal" class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-4/5 h-1/2 bg-white p-6 rounded-t-lg shadow-lg hidden"> -->
+    <!-- <div id="modal" class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-4/5 h-1/2 bg-white p-6 rounded-t-lg shadow-lg hidden flex flex-col"> -->
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+            
+            <!-- iFrame Container -->
+            <div class="mb-4">
+                <iframe id="modal-iframe" src="http://humanphenotypes.net" class="w-full flex-grow h-64 border rounded-lg"></iframe>
+            </div>
+
+            <!-- Score Info -->
+            <div class="text-center mb-4">
+                <p class="text-lg font-semibold">Round: <span id="round-number">1</span></p>
+                <p class="text-md">Distance: <span id="distance">0 km</span></p>
+                <p class="text-md">Score: <span id="score">0</span></p>
+                <p class="text-md">Average Score: <span id="average-score">0</span></p>
+            </div>
+
+            <!-- Button -->
+            <button id="next-face" class="w-full bg-green-500 text-white py-2 rounded-md">
+                Next Face
+            </button>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

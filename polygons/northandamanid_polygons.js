@@ -1,0 +1,1 @@
+window.polygonData = {"bright": [[[{"lat": 12.662, "lng": 93.323}, {"lat": 12.171, "lng": 93.024}, {"lat": 12.662, "lng": 93.323}]]], "dull": [], "centroid": {"lat": 12.662, "lng": 93.323}}
