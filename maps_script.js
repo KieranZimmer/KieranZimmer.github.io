@@ -1,7 +1,8 @@
 let map;
 let guessMarker, line;
 let actualLocation
-let races = ['Mtebid',
+let nextRace;
+let racesUNUSED = ['Mtebid',
  'Shanid',
  'Tibetid',
  'NorthAtlantid',
@@ -199,7 +200,7 @@ let races = ['Mtebid',
  'NorthAustralid',
  'Malid',
  'Canarid']
-let base50 = ['Borreby', 'FennoNordid', 'Tibetid', 'MountainIndid', 'Arizonid', 'Shanid', 'Chikuzen', 'Sudanid', 'EquatorialSudanid', 'WestCongolesid', 'Moorish', 'ProtoEthiopid', 'Tibetid', 'Chikuzen', 'NiloHamitic', 'Katanga', 'Mtebid', 'WestAmazonid', 'Kolid', 'NorthAtlantid', 'Moorish', 'Pacifid', 'Khoid', 'Hadza', 'Assyroid', 'Libyid', 'Xhosaid', 'SouthGondid', 'Vedda', 'Katanga', 'NorthAtlantid', 'Borreby', 'Mtebid', 'Chikuzen', 'Hadza', 'Xhosaid', 'NorthAndid', 'BeringSea', 'Appalacid', 'Sonorid', 'Dinarid', 'DesertAustralid', 'Micronesid', 'BrachioMelanesid', 'SouthFuegid', 'Patagonid', 'MountainAralid', 'IndoIranid', 'SouthAndamanid', 'NorthLappid']
+let races = ['FennoNordid', 'Chikuzen', 'Xhosaid', 'Khoid', 'WestCongolesid', 'Katanga', 'Assyroid', 'Mtebid', 'MountainAralid', 'NorthAtlantid', 'Katanga', 'IndoIranid', 'Moorish', 'Tibetid', 'BeringSea', 'NorthAndid', 'Xhosaid', 'Mtebid', 'Pacifid', 'SouthGondid', 'Moorish', 'Shanid', 'Tibetid', 'WestAmazonid', 'Patagonid', 'ProtoEthiopid', 'DesertAustralid', 'Kolid', 'Chikuzen', 'MountainIndid', 'SouthAndamanid', 'NiloHamitic', 'Dinarid', 'Sonorid', 'BrachioMelanesid', 'Hadza', 'Borreby', 'Appalacid', 'Sudanid', 'SouthFuegid', 'Libyid', 'NorthLappid', 'Borreby', 'Hadza', 'Micronesid', 'EquatorialSudanid', 'Arizonid', 'Vedda', 'NorthAtlantid', 'Chikuzen']
 let seenRaces = []
 let round = 1;
 let totalScore = 0;
@@ -219,14 +220,6 @@ function shuffleArray(array) {
     }
 }
 
-function showModal() {
-    document.getElementById("modal").classList.remove("hidden");
-}
-
-function hideModal() {
-    document.getElementById("modal").classList.add("hidden");
-}
-
 // shuffleArray(races);
 console.log(races)
 
@@ -234,14 +227,14 @@ function initMap() {
     window.map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 0, lng: 0 },
         zoom: 2,
-        mapTypeId: "satellite",
-        styles: [
-            { featureType: "administrative.country", elementType: "labels", stylers: [{ visibility: "on" }] },
-            { featureType: "administrative.locality", stylers: [{ visibility: "off" }] },
-            { featureType: "road", stylers: [{ visibility: "off" }] },
-            { featureType: "poi", stylers: [{ visibility: "off" }] },
-            { featureType: "transit", stylers: [{ visibility: "off" }] }
-        ]
+        // mapTypeId: "satellite",
+        // styles: [
+        //     { featureType: "administrative.country", elementType: "labels", stylers: [{ visibility: "on" }] },
+        //     { featureType: "administrative.locality", stylers: [{ visibility: "off" }] },
+        //     { featureType: "road", stylers: [{ visibility: "off" }] },
+        //     { featureType: "poi", stylers: [{ visibility: "off" }] },
+        //     { featureType: "transit", stylers: [{ visibility: "off" }] }
+        // ]
     });
 
     // Load the first puzzle
@@ -396,6 +389,11 @@ function setupMap() {
         averageScore = Math.round(totalScore / round)
         document.getElementById("score").innerText = `Score: ${score}`;
         document.getElementById("average-score").innerText = `Average Score: ${averageScore}`;
+        document.getElementById("race-name").innerText = nextRace;
+        document.getElementById("next-face").disabled = false;
+        document.getElementById("results").removeAttribute('hidden')
+        document.getElementById("info").removeAttribute('hidden')
+        document.getElementById("race-details").innerText = `http://humanphenotypes.net/${nextRace}.html`
 
         let bounds = new google.maps.LatLngBounds();
     
@@ -415,8 +413,6 @@ function setupMap() {
         bounds.extend(actualLocation)
         console.log(bounds)
         window.map.fitBounds(bounds); // Adjusts the map to fit the polygon
-
-        showModal()
 
         google.maps.event.removeListener(mapListener);
     });
@@ -441,7 +437,7 @@ function teardownMap() {
 
 function getNextFaceData() {
     console.log("getting next face data")
-    let nextRace = races.pop()
+    nextRace = races.pop()
     let raceLowercase = nextRace.toLowerCase()
     // Change faces
     document.getElementById("facem").src = `images/${raceLowercase}m.jpg`;
@@ -456,13 +452,12 @@ function getNextFaceData() {
         setupMap();  // Call setupMap only after the script is loaded
     };
     document.body.appendChild(nextFaceScript);
-    document.getElementById("modal-iframe").src = `http://humanphenotypes.net/${nextRace}`
 }
 
 function nextFace() {
     round += 1;
     document.getElementById("round").innerText = `Round ${round}`
-    hideModal();
+    document.getElementById("next-face").disabled = true;
     teardownMap();
     getNextFaceData();
 }
