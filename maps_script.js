@@ -200,7 +200,7 @@ let racesUNUSED = ['Mtebid',
  'NorthAustralid',
  'Malid',
  'Canarid']
-let races = ['FennoNordid', 'Chikuzen', 'Xhosaid', 'Khoid', 'WestCongolesid', 'Katanga', 'Assyroid', 'Mtebid', 'MountainAralid', 'NorthAtlantid', 'Katanga', 'IndoIranid', 'Moorish', 'Tibetid', 'BeringSea', 'NorthAndid', 'Xhosaid', 'Mtebid', 'Pacifid', 'SouthGondid', 'Moorish', 'Shanid', 'Tibetid', 'WestAmazonid', 'Patagonid', 'ProtoEthiopid', 'DesertAustralid', 'Kolid', 'Chikuzen', 'MountainIndid', 'SouthAndamanid', 'NiloHamitic', 'Dinarid', 'Sonorid', 'BrachioMelanesid', 'Hadza', 'Borreby', 'Appalacid', 'Sudanid', 'SouthFuegid', 'Libyid', 'NorthLappid', 'Borreby', 'Hadza', 'Micronesid', 'EquatorialSudanid', 'Arizonid', 'Vedda', 'NorthAtlantid', 'Chikuzen']
+let races = ['FennoNordid', 'Chikuzen', 'Xhosaid', 'Khoid', 'WestCongolesid', 'Katanga', 'Assyroid', 'Mtebid', 'MountainAralid', 'NorthAtlantid', 'Katanga', 'IndoIranid', 'Moorish', 'Tibetid', 'BeringSea', 'NorthAndid', 'Xhosaid', 'Mtebid', 'Pacifid', 'SouthGondid', 'Moorish', 'Tibetid', 'WestAmazonid', 'Patagonid', 'ProtoEthiopid', 'DesertAustralid', 'Kolid', 'Chikuzen', 'MountainIndid', 'NiloHamitic', 'Dinarid', 'Sonorid', 'BrachioMelanesid', 'Hadza', 'Appalacid', 'Sudanid', 'SouthFuegid', 'Libyid', 'NorthLappid', 'Hadza', 'Micronesid', 'EquatorialSudanid', 'Arizonid', 'Vedda', 'NorthAtlantid', 'Chikuzen']
 let seenRaces = []
 let round = 1;
 let totalScore = 0;
